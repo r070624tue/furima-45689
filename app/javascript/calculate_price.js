@@ -10,8 +10,5 @@ document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('add-tax-price').textContent = commission;
       document.getElementById('profit').textContent = profit;
     });
-  } else {
-    document.getElementById('sales-commission').textContent = 0;
-    document.getElementById('profit').textContent = 0;
   }
 });
