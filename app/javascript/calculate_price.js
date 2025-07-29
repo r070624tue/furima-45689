@@ -1,4 +1,4 @@
-document.addEventListener('load', function(){
+document.addEventListener('DOMContentLoaded', function(){
   const priceInput = document.getElementById('item-price');
 
   if (priceInput) {
@@ -10,5 +10,8 @@ document.addEventListener('load', function(){
       document.getElementById('add-tax-price').textContent = commission;
       document.getElementById('profit').textContent = profit;
     });
+  } else {
+    document.getElementById('sales-commission').textContent = 0;
+    document.getElementById('profit').textContent = 0;
   }
-})
+});
