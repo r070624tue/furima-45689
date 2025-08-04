@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_cannot_purchase, only: [:edit, :update, :destroy]
+  before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -59,8 +59,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def redirect_if_cannot_purchase
-    return redirect_to root_path if current_user.id == @item.user_id
+  def redirect_unless_owner
+    return redirect_to root_path if current_user.id != @item.user_id
 
     redirect_to root_path if @item.order.present?
   end
